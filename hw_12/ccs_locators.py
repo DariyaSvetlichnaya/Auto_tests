@@ -8,8 +8,7 @@ Header
 
 Products:
 7. Link to the Apple Iphone 15 Pro Max 256 MB in black color =
-'li.catalog-grid__cell rz-catalog-tile app-goods-tile-default a.product-link[href*='apple-iphone-15-pro-max-256gb-black-titanium']:nth-of-type(1)
-'
+'li.catalog-grid__cell rz-catalog-tile app-goods-tile-default a.product-link[href*='apple-iphone-15-pro-max-256gb-black-titanium']:nth-of-type(1)'
 8. Читати повністю кнопка = 'rz-read-all-btn button.toggle-btn-down.button--link'
 9. Next page button = 'a.button.button--gray.button--medium.pagination__direction.pagination__direction--forward.ng-star-inserted'
 
