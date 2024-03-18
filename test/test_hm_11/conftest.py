@@ -1,4 +1,4 @@
-from hm_11.car import Car
+from test.test_hm_11.car import Car
 import pytest
 
 
