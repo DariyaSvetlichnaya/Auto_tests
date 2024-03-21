@@ -1,4 +1,8 @@
 from selenium.webdriver.common.by import By
+from selenium.webdriver.support import expected_conditions as ec
+from selenium.webdriver.support.wait import WebDriverWait
+
+from utils.config_manager import ConfigManager
 
 
 def test_simple(get_driver):
@@ -10,13 +14,17 @@ def test_simple(get_driver):
 
     driver = get_driver
 
-    driver.get(BASE_URL)
+    driver.get(ConfigManager.url)
+
+    wait = WebDriverWait(driver, timeout=5)
+    wait.until(ec.visibility_of_element_located((By.ID, username_input_id_locator)))
+
     login_input = driver.find_element(by=By.ID, value=username_input_id_locator)
     pwd_input = driver.find_element(by=By.XPATH, value=password_input_xpath_locator)
     submit_button = driver.find_element(by=By.XPATH, value=login_btn_xpath_locator)
 
-    login_input.send_keys(BASE_USER)
-    pwd_input.send_keys(BASE_PASSWORD)
+    login_input.send_keys(ConfigManager.user_name)
+    pwd_input.send_keys(ConfigManager.user_pass)
     submit_button.click()
 
     driver.find_element(by=By.CLASS_NAME, value=shopping_cart_class_locator)
