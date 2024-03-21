@@ -1,11 +1,5 @@
-BASE_USER = 'standard_user'
-from selenium import webdriver
 from selenium.webdriver.common.by import By
 
-
-BASE_PASSWORD = 'secret_sauce'
-BASE_URL = 'https://www.saucedemo.com/'
-BASE_URL = 'https://www.saucedemo.com/'
 
 def test_simple(get_driver):
 
@@ -15,7 +9,6 @@ def test_simple(get_driver):
     shopping_cart_class_locator = 'shopping_cart_link'
 
     driver = get_driver
-
 
     driver.get(BASE_URL)
     login_input = driver.find_element(by=By.ID, value=username_input_id_locator)
@@ -27,5 +20,3 @@ def test_simple(get_driver):
     submit_button.click()
 
     driver.find_element(by=By.CLASS_NAME, value=shopping_cart_class_locator)
-
-
