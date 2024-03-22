@@ -1,10 +1,5 @@
 from selenium import webdriver
 
-browsers = {
-    'chrome': '',
-    'safari': ''
-}
-
 
 class DriverFactory:
 

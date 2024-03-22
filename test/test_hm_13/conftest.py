@@ -1,4 +1,3 @@
-from selenium import webdriver
 from pytest import fixture
 
 from utils.config_manager import ConfigManager
