@@ -5,7 +5,6 @@ from page_objects.login_page import LoginPage
 
 def test_simple(get_driver):
 
-
     shopping_card_class_locator = 'shopping_card_link'
 
     driver = get_driver
