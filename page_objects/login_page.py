@@ -7,10 +7,14 @@ from page_objects.locators.login_page import Locators
 class LoginPage:
 
     def __init__(self, driver):
-        #super().__init__(driver)
+        # super().__init__(driver)
         self.driver = driver
         self.locators = Locators()
-  
+
+    def is_loaded(self):
+        wait = WebDriverWait(self.driver, 5)
+        wait.until(ec.element_to_be_clickable((By.ID, self.locators.username_input_id_locator)))
+
     def set_user_name(self, username):
         wait = WebDriverWait(self.driver, 5)
         wait.until(ec.visibility_of_element_located((By.ID, self.locators.username_input_id_locator)))
