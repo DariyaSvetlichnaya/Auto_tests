@@ -17,3 +17,5 @@ class ConfigManager:
     user_name = _config.get('user_data', 'BASE_USER')
     user_pass = _config.get('user_data', 'BASE_PASSWORD')
     browser = _config.get('browser_data', 'BROWSER')
+    invalid_name = _config.get('invalid_data', 'INVALID_USER')
+    invalid_pass = _config.get('invalid_data', 'INVALID_PASSWORD')

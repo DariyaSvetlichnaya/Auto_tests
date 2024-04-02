@@ -2,18 +2,19 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as ec
 from selenium.webdriver.support.wait import WebDriverWait
 from page_objects.locators.login_page import Locators
+from page_objects.base_page import BasePage
 
 
-class LoginPage:
+class LoginPage(BasePage):
 
     def __init__(self, driver):
-        # super().__init__(driver)
+        super().__init__(driver)
         self.driver = driver
         self.locators = Locators()
 
     def is_loaded(self):
         wait = WebDriverWait(self.driver, 5)
-        wait.until(ec.element_to_be_clickable((By.ID, self.locators.username_input_id_locator)))
+        wait.until(ec.element_to_be_clickable((By.ID, self.locators.forgot_password_btn_xpath_locator)))
 
     def set_user_name(self, username):
         wait = WebDriverWait(self.driver, 5)
