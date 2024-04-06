@@ -15,3 +15,7 @@ class ScannersPage(BasePage):
     def find_scanners_header_btn(self):
         self._element_is_visible((By.XPATH, Locators.scanners_header_btn_xpath_locator))
         return self
+
+    def find_scanner_search_fld(self):
+        self._element_is_visible((By.XPATH, Locators.scanner_search_xpath_locator))
+        return self

@@ -25,7 +25,7 @@ class BasePage:
         self._element_is_visible(locator, timeout)
         return self.driver.find_element(by=locator[0], value=locator[1]).send_keys(input_data)
 
-    def _click_button(self, locator, timeout=3):
+    def click_button(self, locator, timeout=3):
         self._element_is_clickable(locator, timeout)
         return self.driver.find_element(by=locator[0], value=locator[1]).click()
 
