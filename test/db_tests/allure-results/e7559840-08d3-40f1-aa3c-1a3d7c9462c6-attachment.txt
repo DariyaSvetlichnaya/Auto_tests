@@ -1,0 +1,1 @@
+Product creation failed as expected.

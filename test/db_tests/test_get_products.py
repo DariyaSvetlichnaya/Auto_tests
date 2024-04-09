@@ -21,7 +21,13 @@ def test_get_product_by_name(products_table):
 def test_create_product_with_empty_name(products_table):
     # Negative test: Attempt to create a product with an empty name
     initial_product_count = len(products_table.get_all_products())
-    products_table.create_product(product_name='')
+    result = products_table.create_product(product_name='')
+
+    if result == "Invalid product name":
+        print("Product creation failed as expected.")
+    else:
+        print("Product creation unexpectedly succeeded.")
+
     final_product_count = len(products_table.get_all_products())
 
     assert initial_product_count == final_product_count
@@ -30,7 +36,13 @@ def test_create_product_with_empty_name(products_table):
 def test_create_product_with_invalid_name(products_table):
     # Negative test: Attempt to create a product with characters in the name
     initial_product_count = len(products_table.get_all_products())
-    products_table.create_product(product_name='%^&&')
+    result = products_table.create_product(product_name='%^&&')
+
+    if result == "Invalid product name":
+        print("Product creation failed as expected.")
+    else:
+        print("Product creation unexpectedly succeeded.")
+
     final_product_count = len(products_table.get_all_products())
 
     assert initial_product_count == final_product_count
