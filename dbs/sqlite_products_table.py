@@ -1,4 +1,3 @@
-from random import choice
 from dbs.db_base.base_sqlite_table import execute_sql_query
 
 
@@ -13,16 +12,23 @@ class SqliteProductsTable:
         return f'select * from {self.table_name}'
 
     @execute_sql_query
-    def get_product_by_id(self, id):
-        return f'select product_id from {self.table_name} where product_id = {id}'
+    def get_product_by_name(self, name):
+        return f'select product_name from {self.table_name} where product_name = "{name}"'
 
     @execute_sql_query
-    def create_product(self):
-        return f'insert into {self.table_name} values ({choice(range(2, 10000))}, "Chang", 1, 1, 25)'
+    def get_product_by_product_id(self, product_id):
+        return f'select * from {self.table_name} where product_id = {product_id}'
+
+    def create_product(self, product_id=1, product_name='Tea', supplier_id=2, category_id=1, price=25):
+        if not product_name or any(char in "!@#$%" for char in product_name):
+            return "Invalid product name"
+        sql_query = f'insert into {self.table_name} values ({product_id}, "{product_name}", {supplier_id}, {category_id}, {price})'
+        return sql_query
 
     @execute_sql_query
-    def delete_product_by_id(self, id):
-        return f'delete from {self.table_name} where product_id = {id}'
+    def delete_product_by_id(self, product_id):
+        return f'delete from {self.table_name} where product_id = {product_id}'
 
-
-# print(SqliteProducts().get_all_products())
+    @execute_sql_query
+    def update_product_category_id(self, category_id, product_id):
+        return f'update {category_id} set {category_id} = 2 where product_id = {product_id}'

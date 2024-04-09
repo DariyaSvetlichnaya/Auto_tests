@@ -18,6 +18,7 @@ class BaseSqliteConnector:
         self.cursor.close()
         self.conn.close()
 
+
 class SqliteConnector(BaseSqliteConnector):
     def __init__(self):
         super().__init__(join(ROOT_PATH, 'products_db.db'))
