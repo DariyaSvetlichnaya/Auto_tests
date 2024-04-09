@@ -1,0 +1,5 @@
+Attempting to create a product with an empty name...
+Result of creating product: Invalid product name
+Product creation failed as expected.
+Initial product count: 8
+Final product count: 8

@@ -1,0 +1,2 @@
+Result of creating product: Invalid product name
+Product creation failed as expected.
