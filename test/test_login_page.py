@@ -19,24 +19,38 @@ def test_login_page_loads(get_driver):
     assert "Cloud Portal" in driver.title, "Page title does not contain 'Cloud Portal'"
 
 
-@allure.title("Sign in with valid credentials")
-@allure.description("This test is verifying whether a user can sign in to the Portal")
-@allure.severity(allure.severity_level.CRITICAL)
-@pytest.mark.ui_tests
-def test_login_with_valid_credentials(get_driver):
-    driver = get_driver
-    driver.get(ConfigManager.url)
-    driver.maximize_window()
-    login_page = LoginPage(driver)
+def test_login_with_valid_creds(open_login_page, get_user_name, get_user_password):
+    LoginPage(open_login_page).do_login(get_user_name, get_user_password)
+    ScannersPage(open_login_page).find_scanners_header_btn()
+# @allure.title("Sign in with valid credentials")
+# @allure.description("This test is verifying whether a user can sign in to the Portal")
+# @allure.severity(allure.severity_level.CRITICAL)
+# @pytest.mark.ui_tests
+# def test_login_with_valid_credentials(get_driver):
+#     driver = get_driver
+#     driver.get(ConfigManager.url)
+#     driver.maximize_window()
+#     login_page = LoginPage(driver)
+#
+#     login_page.set_user_name(ConfigManager.user_name)
+#     login_page.set_password(ConfigManager.user_pass)
+#
+#     login_page.click_login()
+#
+#     scanners_page = ScannersPage(driver)
+#     scanners_page.find_scanners_header_btn()
 
-    login_page.set_user_name(ConfigManager.user_name)
-    login_page.set_password(ConfigManager.user_pass)
 
-    login_page.click_login()
+# def test_login_with_invalid_name(open_login_page, get_invalid_user_name, get_user_password):
+#     login_page = LoginPage(open_login_page)
+#     login_page.do_login(get_invalid_user_name, get_user_password)
+#     error_message = login_page.get_invalid_name_error_message()
+#     assert "Incorrect username or password." in error_message
 
-    scanners_page = ScannersPage(driver)
-    scanners_page.find_scanners_header_btn()
 
+    # LoginPage(open_login_page).do_login(get_invalid_user_name, get_user_password)
+    # error_message = LoginPage.get_invalid_name_error_message()
+    # assert "Incorrect username or password." in error_message
 
 @allure.title("Sign in with invalid username")
 @allure.description("This test is verifying whether a user can't sign in to the Portal with invalid username")

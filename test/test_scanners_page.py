@@ -30,6 +30,7 @@ def test_export_scanners_page(get_driver):
     WebDriverWait(driver, 30).until(lambda x: os.path.exists(file_path))
     assert os.path.exists(file_path)
 
+
 def test_scanner_search(get_driver):
     driver = get_driver
     driver.get(ConfigManager.url)
@@ -41,11 +42,10 @@ def test_scanner_search(get_driver):
     login_page.set_password(ConfigManager.user_pass)
     login_page.click_login()
 
-    search_input = page_objects.scanners_page.ScannersPage.find_scanner_search_fld(Locators.scanner_search_xpath_locator)
+    search_input = page_objects.scanners_page.ScannersPage.find_scanner_search_fld()
     scanner_name = '50007'
     search_input.send_keys(scanner_name)
     search_input.send_keys(Keys.ENTER)
-
 
     # # Find the search input field
     # search_input = self.driver.find_element(By.XPATH, "//input[@placeholder='Search']")
@@ -64,6 +64,6 @@ def test_scanner_search(get_driver):
     #
     # # Assert that the search result contains the expected scanner name
     # search_results = self.driver.find_elements(By.XPATH,
-    #                                            "//div[@class='ag-cell ag-cell-not-inline-editing ag-cell-with-height']")
+    #  "//div[@class='ag-cell ag-cell-not-inline-editing ag-cell-with-height']")
     # for result in search_results:
     #     self.assertIn(scanner_name, result.text)

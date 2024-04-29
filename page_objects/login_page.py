@@ -5,6 +5,8 @@ from page_objects.locators.login_page import Locators
 from page_objects.base_page import BasePage
 import allure
 
+from page_objects.scanners_page import ScannersPage
+
 
 class LoginPage(BasePage):
 
@@ -20,18 +22,34 @@ class LoginPage(BasePage):
 
     @allure.step("Step 2")
     def set_user_name(self, username):
-        wait = WebDriverWait(self.driver, 5)
-        wait.until(ec.visibility_of_element_located((By.ID, self.locators.username_input_id_locator)))
-
-        login_input = self.driver.find_element(by=By.ID, value=self.locators.username_input_id_locator)
-        login_input.send_keys(username)
+        self._fill_input(username, (By.ID, self.locators.username_input_id_locator))
+        return self
+        # wait = WebDriverWait(self.driver, 5)
+        # wait.until(ec.visibility_of_element_located((By.ID, self.locators.username_input_id_locator)))
+        #
+        # login_input = self.driver.find_element(by=By.ID, value=self.locators.username_input_id_locator)
+        # login_input.send_keys(username)
 
     @allure.step("Step 3")
     def set_password(self, password):
-        pwd_input = self.driver.find_element(by=By.ID, value=self.locators.password_input_id_locator)
-        pwd_input.send_keys(password)
+        self._fill_input(password, (By.ID, self.locators.password_input_id_locator))
+        return self
+        # pwd_input = self.driver.find_element(by=By.ID, value=self.locators.password_input_id_locator)
+        # pwd_input.send_keys(password)
 
     @allure.step("Step 4")
     def click_login(self):
-        submit_button = self.driver.find_element(by=By.XPATH, value=self.locators.sign_in_btn_xpath_locator)
-        submit_button.click()
+        self._click_button(By.XPATH, self.locators.sign_in_btn_xpath_locator)
+        return ScannersPage(self.driver)
+        # submit_button = self.driver.find_element(by=By.XPATH, value=self.locators.sign_in_btn_xpath_locator)
+        # submit_button.click()
+
+    def do_login(self, username, password):
+        self.set_user_name(username)
+        self.set_password(password)
+        self.click_login()
+        return self
+
+    def get_invalid_name_error_message(self):
+        self._element_is_visible(By.XPATH, self.locators.error_message_xpath_locator)
+        return self.driver.find_element(By.XPATH, self.locators.error_message_xpath_locator).text

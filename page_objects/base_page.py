@@ -1,6 +1,6 @@
 from selenium.webdriver.remote.webdriver import WebDriver
 from selenium.webdriver.remote.webelement import WebElement
-from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support import expected_conditions as ec
 from selenium.webdriver.support.wait import WebDriverWait
 
 
@@ -9,23 +9,23 @@ class BasePage:
     def __init__(self, driver: WebDriver):
         self.driver = driver
 
-    def _element_is_visible(self, locator: tuple[str, str], timeout: int = 5):
+    def _element_is_visible(self, locator: tuple[str, str], timeout: int = 10):
         wait = WebDriverWait(self.driver, timeout)
-        return wait.until(EC.visibility_of_element_located(locator))
+        return wait.until(ec.visibility_of_element_located(locator))
 
-    def element_is_clickable(self, locator: tuple[str, str], timeout: int = 3):
+    def _element_is_clickable(self, locator: tuple[str, str], timeout: int = 3):
         wait = WebDriverWait(self.driver, timeout)
-        return wait.until(EC.element_to_be_clickable(locator))
+        return wait.until(ec.element_to_be_clickable(locator))
 
     def _elements_is_present(self, locator: tuple[str, str], timeout: int = 3):
         wait = WebDriverWait(self.driver, timeout)
-        return wait.until(EC.presence_of_all_elements_located(locator))
+        return wait.until(ec.presence_of_all_elements_located(locator))
 
     def _fill_input(self, input_data: str, locator: tuple[str, str], timeout: int = 3):
         self._element_is_visible(locator, timeout)
         return self.driver.find_element(by=locator[0], value=locator[1]).send_keys(input_data)
 
-    def click_button(self, locator, timeout=3):
+    def _click_button(self, locator, timeout=10):
         self._element_is_clickable(locator, timeout)
         return self.driver.find_element(by=locator[0], value=locator[1]).click()
 
