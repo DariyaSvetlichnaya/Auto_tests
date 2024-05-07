@@ -4,6 +4,7 @@ from api_service.events_api import EventsApi
 
 events_api = EventsApi()
 
+
 @pytest.fixture
 def get_new_event_body():
     return [
@@ -19,6 +20,7 @@ def get_new_event_body():
         }
     ]
 
+
 @pytest.fixture
 def get_event_body_without_scanners():
     return [
@@ -32,6 +34,7 @@ def get_event_body_without_scanners():
             ]
         }
     ]
+
 
 @pytest.fixture
 def get_event_body_end_before_start():
@@ -47,6 +50,7 @@ def get_event_body_end_before_start():
             ]
         }
     ]
+
 
 @pytest.fixture
 def get_event_body_start_after_end():
